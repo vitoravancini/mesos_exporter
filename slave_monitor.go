@@ -132,7 +132,7 @@ func newSlaveMonitorCollector(httpClient *httpClient) prometheus.Collector {
 
 func (c *slaveCollector) Collect(ch chan<- prometheus.Metric) {
 	stats := []executor{}
-	c.fetchAndDecode("/monitor/statistics", &stats)
+	c.fetchAndDecode("/monitor/statistics.json", &stats)
 
 	for _, exec := range stats {
 		for desc, m := range c.metrics {
